@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nome aba</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #111;
+            background: #f5f5f5
+        }
+
+        .header {
+            display: flex;
+            height: 60px;
+            background: #f5f5f5;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: sticky;
+        }
+
+        /* campo com o logo e nome da loja */
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        /* logo em si */
+        .logo {
+            display: flex;
+            height: 40px;
+            width: 120px;
+            background: #666;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        /* campo com a barra de pesquisa e botao de login */
+        .botoes-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .barra-pesquisa {
+            display: flex;
+            background: #fff;
+            align-items: center;
+            padding: 6px;
+            gap: 12px;
+            border-radius: 4px;
+        }
+
+            .barra-pesquisa input {
+                border: 0;
+                padding: 8px 12px;
+                outline: 0;
+                width: 1000px;
+                min-width: 120px
+            }
+
+            .barra-pesquisa button {
+                border: 0;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer
+            }
+
+        .botao-login {
+            border: 0;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer
+        }
+
+        /* botoes/links logo abaixo do header */
+        .nav {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background: #fff;
+            gap: 12px
+        }
+
+        .nav-item {
+            color: #666;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer
+        }
+
+            .nav-item:hover {
+                background: #f3f3f3;
+                color: #000
+            }
+
+        /* campo do conteudo principal */
+        .pagina {
+            display: flex;
+            gap: 12px;
+            padding: 8px 12px;
+            max-width: 2500px;
+            margin: 20px auto
+        }
+
+        .barra-lateral {
+            width: 200px;
+            min-width: 200px;
+            background: #fff;
+            border-radius: 4px;
+            padding: 8px 12px;
+            transition: transform .25s ease,opacity .25s ease;
+        }
+
+            .barra-lateral.hidden {
+                transform: translateX(-120%);
+                opacity: 0;
+                width: 0;
+                padding: 0;
+                margin: 0
+            }
+
+            .barra-lateral h3 {
+                margin: 6px 0 12px;
+                font-size: 14px
+            }
+
+        /* conteudo da barra lateral */
+        .barra-lateral-conteudo {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+            .barra-lateral-conteudo button {
+                padding: 8px 12px;
+                border-radius: 4px;
+                border: 1px solid #f5f5f5;
+                background: transparent;
+                cursor: pointer
+            }
+
+        /* campo onde fica o grid de itens e controles */
+        .conteudo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .controles {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        /* campo do botão toggle do filtro e de 'Resultados para:...' */
+        .filtro-resultado {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .toggle-barra-lateral {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #f5f5f5;
+            background: #fff;
+            cursor: pointer
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .card {
+            flex: 1 1 20%;
+            background: #fff;
+            border-radius: 4px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .thumb {
+            height: 160px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa
+        }
+
+        .card-nome {
+            height: 36px;
+            background: transparent;
+            padding: 8px 12px;
+        }
+
+        .preco {
+            font-weight: 700;
+            margin-top: auto;
+            padding: 8px 12px;
+        }
+
+        .muted {
+            color: #666;
+            padding: 8px 12px;
+        }
+
+        @media (max-width:900px) {
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="marca">
+            <div class="logo">Nome Loja</div>
+            <div class="muted">Texto Exemplo</div>
+        </div>
+
+        <div class="botoes-header">
+            <div class="barra-pesquisa">
+                <input type="search" placeholder="Buscar" />
+                <button>🔍</button>
+            </div>
+
+            <button class="botao-login">Entrar</button>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-item">Link1</div>
+        <div class="nav-item">Link2</div>
+        <div class="nav-item">Link3</div>
+        <div class="nav-item">Link4</div>
+        <div class="nav-item">Link5</div>
+        <div class="nav-item">Link6</div>
+    </nav>
+
+    <main class="pagina">
+
+        <aside class="barra-lateral" id="barra-lateral">
+            <h3>Filtrar por</h3>
+            <div class="barra-lateral-conteudo">
+                <button>Filtro1</button>
+                <button>Filtro2</button>
+                <button>Filtro3</button>
+            </div>
+        </aside>
+
+        <section class="conteudo">
+            <div class="controles">
+                <div class="filtro-resultado">
+                    <button class="toggle-barra-lateral" id="togglebarra-lateral">☰ Filtros</button>
+                    <div class="muted">Resultados para: <strong>Todos os produtos</strong></div>
+                </div>
+
+                <div class="muted">
+                    Ordenar por:
+                    <select>
+                        <option>Mais vendidos</option>
+                        <option>Menor preço</option>
+                        <option>Maior preço</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,00</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,00</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,00</div>
+                </article>
+
+                <article class="card">
+                    <div class="thumb">Imagem</div>
+                    <div class="card-nome">Título do produto</div>
+                    <div class="muted">Breve descrição</div>
+                    <div class="preco">R$ 99,90</div>
+                </article>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // aba lateral
+        const barralateral = document.getElementById('barra-lateral');
+        const toggle = document.getElementById('togglebarra-lateral');
+        toggle.addEventListener('click', () => {
+            const hidden = barralateral.classList.toggle('hidden');
+            toggle.setAttribute('aria-pressed', String(!hidden));
+        });
+
+        // atalho 'f' para aba lateral
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'f' && document.activeElement.tagName.toLowerCase() !== 'input') {
+                barralateral.classList.toggle('hidden');
+                toggle.setAttribute('aria-pressed', String(!barralateral.classList.contains('hidden')));
+            }
+        });
+    </script>
+
+</body>
+</html>

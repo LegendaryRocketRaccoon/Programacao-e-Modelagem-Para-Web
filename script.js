@@ -20,8 +20,8 @@ const produtos = [
         const productGrid = document.getElementById('productGrid');
         const loading = document.getElementById('loading');
         const sortSelect = document.getElementById('sortSelect');
-        const priceRange = document.getElementById('priceRange');
-        const priceValue = document.getElementById('priceValue');
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
 
 
         function formatPrice(price) {
@@ -49,7 +49,7 @@ const produtos = [
             const discount = calculateDiscount(produto.precoOriginal, produto.preco);
             
             return `
-                <article class="card" data-category="${produto.categoria}" data-brand="${produto.marca}" data-price="${produto.preco}">
+                <article class="card" data-id="${produto.id}" data-category="${produto.categoria}" data-brand="${produto.marca}" data-price="${produto.preco}">
                     <div class="thumb">
                         📱 Imagem do produto
                     </div>
@@ -80,7 +80,84 @@ const produtos = [
             }, 300);
         }
 
-        // Sidebar toggle
+
+        function getActiveFilters() {
+            const searchQuery = (document.querySelector('input[type="search"]').value || '').toLowerCase();
+
+            const categoryChecks = Array.from(document.querySelectorAll('.barra-lateral input[type="checkbox"][value]'))
+                .filter(cb => cb.checked && cb.closest('.filtro-grupo') && cb.closest('.filtro-grupo').querySelector('.filtro-titulo').textContent.trim() === 'Categoria')
+                .map(cb => cb.value);
+
+            const brandChecks = Array.from(document.querySelectorAll('.barra-lateral input[type="checkbox"][value]'))
+                .filter(cb => cb.checked && cb.closest('.filtro-grupo') && cb.closest('.filtro-grupo').querySelector('.filtro-titulo').textContent.trim() === 'Marca')
+                .map(cb => cb.value);
+
+            const ratingRadio = document.querySelector('.barra-lateral input[type="radio"][name="rating"]:checked');
+            const minRating = ratingRadio ? parseInt(ratingRadio.value, 10) : 0;
+
+            const maxPrice = priceRange ? parseInt(priceRange.value, 10) : Infinity;
+
+
+            const navActive = document.querySelector('.nav-item.active');
+            const navCategory = navActive ? navActive.textContent.toLowerCase() : 'todos';
+
+            return { searchQuery, categoryChecks, brandChecks, minRating, maxPrice, navCategory };
+        }
+
+        function applyFiltersAndRender() {
+            const { searchQuery, categoryChecks, brandChecks, minRating, maxPrice, navCategory } = getActiveFilters();
+
+            let filtered = produtos.filter(p => {
+
+                if (p.preco > maxPrice) return false;
+
+
+                if (minRating && Math.floor(p.rating) < minRating) return false;
+
+
+                if (categoryChecks.length > 0 && !categoryChecks.includes(p.categoria)) return false;
+
+
+                if (brandChecks.length > 0 && !brandChecks.includes(p.marca)) return false;
+
+
+                if (navCategory && navCategory !== 'todos') {
+                    const cat = navCategory;
+                    if (!(p.categoria.includes(cat) || cat.includes(p.categoria))) return false;
+                }
+
+
+                if (searchQuery) {
+                    const hay = (p.nome + ' ' + p.descricao + ' ' + p.marca).toLowerCase();
+                    if (!hay.includes(searchQuery)) return false;
+                }
+
+                return true;
+            });
+
+
+            const sortBy = sortSelect ? sortSelect.value : 'popular';
+            switch(sortBy) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.preco - b.preco);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.preco - a.preco);
+                    break;
+                case 'rating':
+                    filtered.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'newest':
+                    filtered = filtered.slice().reverse();
+                    break;
+                default:
+                    filtered.sort((a, b) => b.reviews - a.reviews);
+            }
+
+            renderProducts(filtered);
+        }
+
+
         function toggleSidebar() {
             const isHidden = barraLateral.classList.contains('hidden');
             const isMobile = window.innerWidth <= 768;
@@ -118,44 +195,29 @@ const produtos = [
 
 
         sortSelect.addEventListener('change', (e) => {
-            const sortBy = e.target.value;
-            let sortedProducts = [...produtos];
-            
-            switch(sortBy) {
-                case 'price-asc':
-                    sortedProducts.sort((a, b) => a.preco - b.preco);
-                    break;
-                case 'price-desc':
-                    sortedProducts.sort((a, b) => b.preco - a.preco);
-                    break;
-                case 'rating':
-                    sortedProducts.sort((a, b) => b.rating - a.rating);
-                    break;
-                case 'newest':
-                    sortedProducts.reverse();
-                    break;
-                default:
-                    sortedProducts.sort((a, b) => b.reviews - a.reviews);
-            }
-            
-            renderProducts(sortedProducts);
+            applyFiltersAndRender();
         });
+
 
 
         priceRange.addEventListener('input', (e) => {
             const value = parseInt(e.target.value);
             priceValue.textContent = formatPrice(value);
-            
-            const filteredProducts = produtos.filter(p => p.preco <= value);
-            renderProducts(filteredProducts);
+            applyFiltersAndRender();
         });
 
 
-        document.addEventListener('change', (e) => {
-            if (e.target.type === 'checkbox' || e.target.type === 'radio') {
-
-                console.log('Filter changed:', e.target);
+        (function initPrice() {
+            if (priceRange && priceValue) {
+                const initial = parseInt(priceRange.value);
+                priceValue.textContent = formatPrice(initial);
             }
+        })();
+
+
+
+        document.querySelectorAll('.barra-lateral input[type="checkbox"], .barra-lateral input[type="radio"]').forEach(el => {
+            el.addEventListener('change', () => applyFiltersAndRender());
         });
 
 
@@ -163,17 +225,10 @@ const produtos = [
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             if (!query) {
-                renderProducts();
+                applyFiltersAndRender();
                 return;
             }
-            
-            const filteredProducts = produtos.filter(p => 
-                p.nome.toLowerCase().includes(query) ||
-                p.descricao.toLowerCase().includes(query) ||
-                p.marca.toLowerCase().includes(query)
-            );
-            
-            renderProducts(filteredProducts);
+            applyFiltersAndRender();
         });
 
 
@@ -182,16 +237,7 @@ const produtos = [
                 document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
                 e.target.classList.add('active');
                 
-                const category = e.target.textContent.toLowerCase();
-                if (category === 'todos') {
-                    renderProducts();
-                } else {
-                    const filteredProducts = produtos.filter(p => 
-                        p.categoria.includes(category) || 
-                        category.includes(p.categoria)
-                    );
-                    renderProducts(filteredProducts);
-                }
+                applyFiltersAndRender();
             });
         });
 
@@ -206,4 +252,149 @@ const produtos = [
         });
 
 
-        renderProducts();
+
+        applyFiltersAndRender();
+
+
+        const cartKey = 'mini_shop_cart_v1';
+        let cart = [];
+        const cartButton = document.getElementById('cartButton');
+        const cartCountEl = document.getElementById('cartCount');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const clearCartBtn = document.getElementById('clearCart');
+        const checkoutBtn = document.getElementById('checkout');
+
+        function loadCart() {
+            try {
+                const raw = localStorage.getItem(cartKey);
+                cart = raw ? JSON.parse(raw) : [];
+            } catch (err) {
+                cart = [];
+            }
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem(cartKey, JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function addToCart(productId) {
+            const prod = produtos.find(p => p.id === productId);
+            if (!prod) return;
+            const existing = cart.find(i => i.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: prod.id, nome: prod.nome, preco: prod.preco, qty: 1 });
+            }
+            saveCart();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            saveCart();
+        }
+
+        function changeQty(productId, qty) {
+            const it = cart.find(i => i.id === productId);
+            if (!it) return;
+            it.qty = Math.max(1, qty);
+            saveCart();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((s, i) => s + i.qty, 0);
+            cartCountEl.textContent = totalCount;
+
+            const total = cart.reduce((s, i) => s + i.preco * i.qty, 0);
+            cartTotalEl.textContent = formatPrice(total);
+
+
+            if (cartDrawer && cartDrawer.style.display !== 'none') renderCartItems();
+        }
+
+        function renderCartItems() {
+            cartItemsEl.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<div>Seu carrinho está vazio.</div>';
+                return;
+            }
+
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.style.display = 'flex';
+                div.style.justifyContent = 'space-between';
+                div.style.alignItems = 'center';
+                div.style.gap = '8px';
+                div.innerHTML = `
+                    <div style="flex:1">
+                        <div style="font-weight:600">${item.nome}</div>
+                        <div style="color:#64748b;font-size:13px">${formatPrice(item.preco)}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px">
+                        <button data-id="${item.id}" class="qty-decr btn btn-secondary">-</button>
+                        <div>${item.qty}</div>
+                        <button data-id="${item.id}" class="qty-incr btn btn-secondary">+</button>
+                        <button data-id="${item.id}" class="remove-item btn btn-secondary">Remover</button>
+                    </div>
+                `;
+                cartItemsEl.appendChild(div);
+            });
+
+
+            cartItemsEl.querySelectorAll('.qty-incr').forEach(b => b.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                changeQty(id, (cart.find(i=>i.id===id).qty || 0) + 1);
+                renderCartItems();
+            }));
+
+            cartItemsEl.querySelectorAll('.qty-decr').forEach(b => b.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                const it = cart.find(i=>i.id===id);
+                if (!it) return;
+                changeQty(id, Math.max(1, it.qty - 1));
+                renderCartItems();
+            }));
+
+            cartItemsEl.querySelectorAll('.remove-item').forEach(b => b.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                removeFromCart(id);
+                renderCartItems();
+            }));
+        }
+
+
+        cartButton.addEventListener('click', () => {
+            if (cartDrawer.style.display === 'none' || !cartDrawer.style.display) {
+                cartDrawer.style.display = 'block';
+                renderCartItems();
+            } else {
+                cartDrawer.style.display = 'none';
+            }
+        });
+
+        clearCartBtn.addEventListener('click', () => {
+            cart = [];
+            saveCart();
+            renderCartItems();
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            alert('Checkout demo: total ' + cartTotalEl.textContent);
+        });
+
+
+        productGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-comprar');
+            if (!btn) return;
+            const article = btn.closest('.card');
+            if (!article) return;
+            const id = parseInt(article.dataset.id, 10);
+            if (!isNaN(id)) addToCart(id);
+        });
+
+
+        loadCart();

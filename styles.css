@@ -15,6 +15,8 @@
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Variáveis CSS: úteis para manter consistência de cores, espaçamentos e facilitar temas */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -29,6 +31,11 @@ body {
     font-size: 14px;
 }
 
+/*
+  Header usa Flexbox para alinhar logo, busca e ações do usuário.
+  Flexbox é ideal para layouts unidimensionais (uma linha ou coluna).
+  Propriedades relevantes: display:flex, justify-content, align-items, gap, flex.
+*/
 .header {
     display: flex;
     height: 72px;
@@ -64,10 +71,10 @@ body {
     transition: var(--transition);
 }
 
-    .logo:hover {
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-lg);
-    }
+.logo:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
 
 .marca-texto {
     color: var(--text-secondary);
@@ -94,25 +101,25 @@ body {
     flex: 1;
 }
 
-    .barra-pesquisa:focus-within {
-        border-color: var(--primary);
-        background: var(--surface);
-        box-shadow: var(--shadow);
-    }
+.barra-pesquisa:focus-within {
+    border-color: var(--primary);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
 
-    .barra-pesquisa input {
-        border: none;
-        padding: 12px 16px;
-        outline: none;
-        width: 100%;
-        background: transparent;
-        color: var(--text-primary);
-        font-size: 14px;
-    }
+.barra-pesquisa input {
+    border: none;
+    padding: 12px 16px;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+}
 
-        .barra-pesquisa input::placeholder {
-            color: var(--text-muted);
-        }
+.barra-pesquisa input::placeholder {
+    color: var(--text-muted);
+}
 
 .btn {
     border: none;
@@ -132,10 +139,10 @@ body {
     color: white;
 }
 
-    .btn-primary:hover {
-        background: var(--primary-dark);
-        transform: translateY(-1px);
-    }
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
 
 .btn-secondary {
     background: var(--secondary);
@@ -143,10 +150,10 @@ body {
     border: 1px solid var(--border);
 }
 
-    .btn-secondary:hover {
-        background: var(--surface);
-        box-shadow: var(--shadow);
-    }
+.btn-secondary:hover {
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
 
 .btn-comprar {
     width: 100%;
@@ -157,6 +164,10 @@ body {
     justify-content: center;
 }
 
+/*
+  A navegação principal é uma lista horizontal (ul > li) estilizada com Flexbox.
+  Usamos uma lista semântica para melhorar acessibilidade e SEO.
+*/
 .nav {
     height: 48px;
     display: flex;
@@ -187,13 +198,14 @@ body {
     transition: var(--transition);
 }
 
-    .nav-item:hover,
-    .nav-item.active {
-        background: var(--secondary);
-        color: var(--text-primary);
-    }
+.nav-item:hover,
+.nav-item.active {
+    background: var(--secondary);
+    color: var(--text-primary);
+}
 
-
+/* Grid Layout: divide a página em colunas (barra lateral + conteúdo)
+   Grid é indicado para layouts bidimensionais complexos, com linhas e colunas. */
 .pagina {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -215,21 +227,21 @@ body {
     transition: var(--transition);
 }
 
-    .barra-lateral.hidden {
-        transform: translateX(-100%);
-        opacity: 0;
-        width: 0;
-        padding: 0;
-        margin: 0;
-        border: none;
-    }
+.barra-lateral.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
 
-    .barra-lateral h3 {
-        margin: 0 0 16px;
-        font-size: 16px;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
+.barra-lateral h3 {
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
 
 .filtro-grupo {
     margin-bottom: 24px;
@@ -251,13 +263,13 @@ body {
     transition: var(--transition);
 }
 
-    .filtro-opcao:hover {
-        color: var(--primary);
-    }
+.filtro-opcao:hover {
+    color: var(--primary);
+}
 
-    .filtro-opcao input {
-        accent-color: var(--primary);
-    }
+.filtro-opcao input {
+    accent-color: var(--primary);
+}
 
 .range-slider {
     width: 100%;
@@ -271,7 +283,6 @@ body {
     color: var(--text-muted);
     margin-top: 8px;
 }
-
 
 .conteudo {
     display: flex;
@@ -298,9 +309,9 @@ body {
     font-size: 14px;
 }
 
-    .resultado-info strong {
-        color: var(--text-primary);
-    }
+.resultado-info strong {
+    color: var(--text-primary);
+}
 
 .ordenacao {
     display: flex;
@@ -310,15 +321,14 @@ body {
     font-size: 14px;
 }
 
-    .ordenacao select {
-        border: 1px solid var(--border);
-        border-radius: calc(var(--radius) - 2px);
-        padding: 8px 12px;
-        background: var(--surface);
-        color: var(--text-primary);
-        cursor: pointer;
-    }
-
+.ordenacao select {
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 2px);
+    padding: 8px 12px;
+    background: var(--surface);
+    color: var(--text-primary);
+    cursor: pointer;
+}
 
 .grid {
     display: grid;
@@ -326,9 +336,11 @@ body {
     gap: 24px;
 }
 
-/* Comentário: usamos Grid para o catálogo de produtos.
-   `auto-fill` + `minmax()` permite que o número de colunas se adapte
-   automaticamente conforme a largura disponível. */
+/*
+  Grid Layout: usamos aqui para o catálogo de produtos.
+  `auto-fill` + `minmax()` permite que o número de colunas se adapte
+  automaticamente conforme a largura disponível.
+*/
 
 .card {
     background: var(--surface);
@@ -342,11 +354,11 @@ body {
     overflow: hidden;
 }
 
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        border-color: var(--primary);
-    }
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
 
 .thumb {
     height: 200px;
@@ -361,16 +373,16 @@ body {
     overflow: hidden;
 }
 
-    .thumb::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transition: left 0.5s;
-    }
+.thumb::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
 
 .card:hover .thumb::before {
     left: 100%;
@@ -451,10 +463,10 @@ body {
     backdrop-filter: blur(4px);
 }
 
-    .tela-login-bg.active {
-        visibility: visible;
-        opacity: 1;
-    }
+.tela-login-bg.active {
+    visibility: visible;
+    opacity: 1;
+}
 
 .tela-login {
     background: var(--surface);
@@ -470,29 +482,29 @@ body {
     animation: telaFade 0.3s ease;
 }
 
-    .tela-login h2 {
-        text-align: center;
-        color: var(--text-primary);
-        margin-bottom: 8px;
-        font-size: 20px;
-    }
+.tela-login h2 {
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 20px;
+}
 
-    .tela-login input {
-        padding: 12px;
-        border-radius: calc(var(--radius) - 2px);
-        border: 1px solid var(--border);
-        font-size: 14px;
-        transition: var(--transition);
-        background: var(--secondary);
-        color: var(--text-primary);
-    }
+.tela-login input {
+    padding: 12px;
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    transition: var(--transition);
+    background: var(--secondary);
+    color: var(--text-primary);
+}
 
-        .tela-login input:focus {
-            border-color: var(--primary);
-            background: var(--surface);
-            box-shadow: var(--shadow-lg);
-            outline: none;
-        }
+.tela-login input:focus {
+    border-color: var(--primary);
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
+    outline: none;
+}
 
 .product-img {
     width: 100%;
@@ -534,14 +546,14 @@ body {
         overflow-y: auto;
     }
 
-        .barra-lateral.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
+    .barra-lateral.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
 
-        .barra-lateral.hidden {
-            transform: translateX(-100%);
-        }
+    .barra-lateral.hidden {
+        transform: translateX(-100%);
+    }
 
     .overlay {
         position: fixed;
@@ -556,10 +568,10 @@ body {
         transition: var(--transition);
     }
 
-        .overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
+    .overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
 
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -587,7 +599,6 @@ body {
     }
 }
 
-
 .loading {
     display: none;
     justify-content: center;
@@ -603,27 +614,9 @@ body {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes telaFade {
-    from {
-        transform: translateY(-10px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+@keyframes telaFade { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 .footer {
     background: var(--surface);
@@ -640,34 +633,82 @@ body {
     justify-content: space-between;
     gap: 16px;
 }
-@media (max-width: 768px) {
-    .footer-conteudo {
-        flex-direction: column;
-        gap: 8px;
-    }
-}
-
+@media (max-width: 768px) { .footer-conteudo { flex-direction: column; gap: 8px; } }
 
 @media (max-width: 1024px) {
-    .pagina {
-        grid-template-columns: 280px 1fr;
-        padding: 20px;
-    }
-
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
+    .pagina { grid-template-columns: 280px 1fr; padding: 20px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
 
+footer.footer { position: sticky; bottom: 0; z-index: 50; }
 
-footer.footer {
-    position: sticky;
-    bottom: 0;
-    z-index: 50;
+main.pagina { padding-bottom: 80px; }
+
+/*
+  Grid Layout: usamos aqui para o catálogo de produtos.
+  `auto-fill` + `minmax()` permite que o número de colunas se adapte
+  automaticamente conforme a largura disponível.
+  Grid é indicado para layouts bidimensionais (linhas e colunas).
+*/
+
+/*
+  Breakpoints e estratégia:
+  - Mobile (até 600px)  : 1 coluna de produtos (pode-se usar @media).
+  - Tablet (até 1024px) : 2 colunas (usado @media (max-width:1024px)).
+  - Desktop (>=1025px)  : 3+ colunas, aproveitando o grid automático.
+
+  Observação: o arquivo atualmente usa `max-width` queries.
+*/
+
+/* Modal de detalhe do produto */
+.product-modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 600;
 }
 
-main.pagina {
-    padding-bottom: 80px;
+.product-modal-bg.active {
+    display: flex;
+}
+
+.product-modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 4px);
+    width: 90%;
+    max-width: 900px;
+    padding: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+.product-modal-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.product-modal .product-img {
+    width: 320px;
+    height: 240px;
+    object-fit: contain;
+    background: #fafafa;
+}
+
+.product-modal-info {
+    flex: 1;
+}
+
+.modal-close {
+    float: right;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    .product-modal-content { flex-direction: column; align-items: center; }
+    .product-modal .product-img { width: 100%; height: 200px; }
+    .product-modal { padding: 16px; }
 }

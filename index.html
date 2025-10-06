@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Depois pensamos em um nome</title>
+    <title>QuickShop</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
 
     <header class="header">
         <div class="marca">
-            <div class="logo">Nome</div>
-            <div class="marca-texto">Depois pensamos no nome</div>
+            <div class="logo">QuickShop</div>
+            <div class="marca-texto">QuickShop - Compre rápido</div>
         </div>
 
         <div class="botoes-header">
@@ -24,7 +24,7 @@
 
         <div style="display:flex;align-items:center;gap:8px;">
             <button id="cartButton" class="btn btn-secondary">Carrinho <span id="cartCount" style="margin-left:6px;font-weight:700;">0</span></button>
-            <button class="btn btn-secondary">�👤 Entrar</button>
+            <button class="btn btn-secondary" id="openLogin">👤 Entrar</button>
         </div>
     </header>
 
@@ -41,7 +41,7 @@
     <main class="pagina">
         <aside class="barra-lateral" id="barra-lateral">
             <h3>Filtrar por</h3>
-            
+
             <div class="filtro-grupo">
                 <div class="filtro-titulo">Categoria</div>
                 <label class="filtro-opcao">
@@ -60,11 +60,11 @@
 
             <div class="filtro-grupo">
                 <div class="filtro-titulo">Preço</div>
-                <input type="range" class="range-slider" min="0" max="10000" value="5000" id="priceRange">
+                <input type="range" class="range-slider" min="0" max="15000" value="5000" id="priceRange">
                 <div class="range-values">
                     <span>R$ 0</span>
                     <span id="priceValue">R$ 5.000</span>
-                    <span>R$ 10.000</span>
+                    <span>R$ 15.000</span>
                 </div>
             </div>
 
@@ -141,6 +141,16 @@
             </div>
         </div>
     </aside>
+    <div class="tela-login-bg" id="loginTela">
+        <div class="tela-login">
+            <h2>Login</h2>
+            <input type="text" placeholder="Usuário ou e‑mail" />
+            <input type="password" id="senha" placeholder="Senha" />
+            <label><input type="checkbox" onclick="toggleSenha()"> Mostrar senha</label>
+            <button class="btn btn-primary btn-login">Entrar</button>
+            <button class="btn btn-primary btn-login" id="closeLogin">Fechar</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

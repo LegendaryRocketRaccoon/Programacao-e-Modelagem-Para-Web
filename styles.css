@@ -29,7 +29,6 @@ body {
     font-size: 14px;
 }
 
-
 .header {
     display: flex;
     height: 72px;
@@ -65,10 +64,10 @@ body {
     transition: var(--transition);
 }
 
-.logo:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
-}
+    .logo:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-lg);
+    }
 
 .marca-texto {
     color: var(--text-secondary);
@@ -95,25 +94,25 @@ body {
     flex: 1;
 }
 
-.barra-pesquisa:focus-within {
-    border-color: var(--primary);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-}
+    .barra-pesquisa:focus-within {
+        border-color: var(--primary);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+    }
 
-.barra-pesquisa input {
-    border: none;
-    padding: 12px 16px;
-    outline: none;
-    width: 100%;
-    background: transparent;
-    color: var(--text-primary);
-    font-size: 14px;
-}
+    .barra-pesquisa input {
+        border: none;
+        padding: 12px 16px;
+        outline: none;
+        width: 100%;
+        background: transparent;
+        color: var(--text-primary);
+        font-size: 14px;
+    }
 
-.barra-pesquisa input::placeholder {
-    color: var(--text-muted);
-}
+        .barra-pesquisa input::placeholder {
+            color: var(--text-muted);
+        }
 
 .btn {
     border: none;
@@ -133,10 +132,10 @@ body {
     color: white;
 }
 
-.btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
-}
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+    }
 
 .btn-secondary {
     background: var(--secondary);
@@ -144,11 +143,19 @@ body {
     border: 1px solid var(--border);
 }
 
-.btn-secondary:hover {
-    background: var(--surface);
-    box-shadow: var(--shadow);
+    .btn-secondary:hover {
+        background: var(--surface);
+        box-shadow: var(--shadow);
+    }
+
+.btn-comprar {
+    width: 100%;
+    justify-content: center;
 }
 
+.btn-login {
+    justify-content: center;
+}
 
 .nav {
     height: 48px;
@@ -171,11 +178,11 @@ body {
     transition: var(--transition);
 }
 
-.nav-item:hover,
-.nav-item.active {
-    background: var(--secondary);
-    color: var(--text-primary);
-}
+    .nav-item:hover,
+    .nav-item.active {
+        background: var(--secondary);
+        color: var(--text-primary);
+    }
 
 
 .pagina {
@@ -199,21 +206,21 @@ body {
     transition: var(--transition);
 }
 
-.barra-lateral.hidden {
-    transform: translateX(-100%);
-    opacity: 0;
-    width: 0;
-    padding: 0;
-    margin: 0;
-    border: none;
-}
+    .barra-lateral.hidden {
+        transform: translateX(-100%);
+        opacity: 0;
+        width: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
 
-.barra-lateral h3 {
-    margin: 0 0 16px;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
+    .barra-lateral h3 {
+        margin: 0 0 16px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
 
 .filtro-grupo {
     margin-bottom: 24px;
@@ -235,13 +242,13 @@ body {
     transition: var(--transition);
 }
 
-.filtro-opcao:hover {
-    color: var(--primary);
-}
+    .filtro-opcao:hover {
+        color: var(--primary);
+    }
 
-.filtro-opcao input {
-    accent-color: var(--primary);
-}
+    .filtro-opcao input {
+        accent-color: var(--primary);
+    }
 
 .range-slider {
     width: 100%;
@@ -282,9 +289,9 @@ body {
     font-size: 14px;
 }
 
-.resultado-info strong {
-    color: var(--text-primary);
-}
+    .resultado-info strong {
+        color: var(--text-primary);
+    }
 
 .ordenacao {
     display: flex;
@@ -294,14 +301,14 @@ body {
     font-size: 14px;
 }
 
-.ordenacao select {
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) - 2px);
-    padding: 8px 12px;
-    background: var(--surface);
-    color: var(--text-primary);
-    cursor: pointer;
-}
+    .ordenacao select {
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) - 2px);
+        padding: 8px 12px;
+        background: var(--surface);
+        color: var(--text-primary);
+        cursor: pointer;
+    }
 
 
 .grid {
@@ -322,11 +329,11 @@ body {
     overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
-}
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+    }
 
 .thumb {
     height: 200px;
@@ -341,16 +348,16 @@ body {
     overflow: hidden;
 }
 
-.thumb::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s;
-}
+    .thumb::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: left 0.5s;
+    }
 
 .card:hover .thumb::before {
     left: 100%;
@@ -416,10 +423,63 @@ body {
     font-size: 12px;
 }
 
-.btn-comprar {
-    width: 100%;
+
+.tela-login-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 41, 59, 0.6);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
 }
+
+    .tela-login-bg.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.tela-login {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 20px;
+    max-width: 380px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: telaFade 0.3s ease;
+}
+
+    .tela-login h2 {
+        text-align: center;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        font-size: 20px;
+    }
+
+    .tela-login input {
+        padding: 12px;
+        border-radius: calc(var(--radius) - 2px);
+        border: 1px solid var(--border);
+        font-size: 14px;
+        transition: var(--transition);
+        background: var(--secondary);
+        color: var(--text-primary);
+    }
+
+        .tela-login input:focus {
+            border-color: var(--primary);
+            background: var(--surface);
+            box-shadow: var(--shadow-lg);
+            outline: none;
+        }
 
 .product-img {
     width: 100%;
@@ -461,14 +521,14 @@ body {
         overflow-y: auto;
     }
 
-    .barra-lateral.show {
-        transform: translateX(0);
-        opacity: 1;
-    }
+        .barra-lateral.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
 
-    .barra-lateral.hidden {
-        transform: translateX(-100%);
-    }
+        .barra-lateral.hidden {
+            transform: translateX(-100%);
+        }
 
     .overlay {
         position: fixed;
@@ -483,10 +543,10 @@ body {
         transition: var(--transition);
     }
 
-    .overlay.show {
-        opacity: 1;
-        visibility: visible;
-    }
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
 
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -537,5 +597,17 @@ body {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes telaFade {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

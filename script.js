@@ -232,10 +232,11 @@ searchInput.addEventListener('input', (e) => {
 });
 
 
-document.querySelectorAll('.nav-item').forEach(item => {
+// Nav items: agora são <li> dentro de .nav-list (lista semântica). Adaptamos o seletor.
+document.querySelectorAll('.nav-list .nav-item').forEach(item => {
     item.addEventListener('click', (e) => {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        e.target.classList.add('active');
+        document.querySelectorAll('.nav-list .nav-item').forEach(i => i.classList.remove('active'));
+        e.currentTarget.classList.add('active');
 
         applyFiltersAndRender();
     });

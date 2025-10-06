@@ -630,10 +630,14 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* centraliza o conteúdo horizontalmente */
+    align-items: center;
     gap: 16px;
 }
-@media (max-width: 768px) { .footer-conteudo { flex-direction: column; gap: 8px; } }
+@media (max-width: 768px) { .footer-conteudo { flex-direction: column; gap: 8px; text-align: center; } }
+
+/* Garante que o texto do footer esteja centralizado também no container principal */
+footer.footer { text-align: center; }
 
 @media (max-width: 1024px) {
     .pagina { grid-template-columns: 280px 1fr; padding: 20px; }

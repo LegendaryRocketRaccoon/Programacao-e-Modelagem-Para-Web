@@ -16,11 +16,12 @@
         </div>
 
         <div class="botoes-header">
-            <div class="barra-pesquisa">
-                <input type="search" placeholder="Busque por produtos, marcas..." />
-                <button class="btn btn-primary">🔍</button>
+
+            <form class="barra-pesquisa" role="search" action="#" method="get">
+                    <input type="search" name="q" placeholder="Busque por produtos, marcas..." aria-label="Buscar produtos" />
+                    <button class="btn btn-primary" aria-label="Pesquisar">🔍</button>
+                </form>
             </div>
-        </div>
 
         <div style="display:flex;align-items:center;gap:8px;">
             <button id="cartButton" class="btn btn-secondary">Carrinho <span id="cartCount" style="margin-left:6px;font-weight:700;">0</span></button>
@@ -28,14 +29,17 @@
         </div>
     </header>
 
-    <nav class="nav">
-        <div class="nav-item active">Todos</div>
-        <div class="nav-item">Smartphones</div>
-        <div class="nav-item">Laptops</div>
-        <div class="nav-item">Tablets</div>
-        <div class="nav-item">Acessórios</div>
-        <div class="nav-item">Smart Home</div>
-        <div class="nav-item">Games</div>
+
+    <nav class="nav" role="navigation" aria-label="Categorias">
+        <ul class="nav-list">
+            <li class="nav-item active">Todos</li>
+            <li class="nav-item">Smartphones</li>
+            <li class="nav-item">Laptops</li>
+            <li class="nav-item">Tablets</li>
+            <li class="nav-item">Acessórios</li>
+            <li class="nav-item">Smart Home</li>
+            <li class="nav-item">Games</li>
+        </ul>
     </nav>
 
     <main class="pagina">
@@ -151,6 +155,14 @@
             <button class="btn btn-primary btn-login" id="closeLogin">Fechar</button>
         </div>
     </div>
+
+<footer class="footer">
+    <div class="footer-conteudo">
+        <div>© 2025 QuickShop - Todos os direitos reservados</div>
+        <div>Contato: contato@quickshop.com | Tel: (54) 99999-9999</div>
+    </div>
+</footer>
+
     <script src="script.js"></script>
 </body>
 </html>

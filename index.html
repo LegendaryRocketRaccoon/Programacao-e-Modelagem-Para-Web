@@ -9,6 +9,7 @@
 <body>
     <div class="overlay" id="overlay"></div>
 
+    <!-- Cabeçalho fixo: contém logo, busca e ações do usuário (carrinho/login) -->
     <header class="header">
         <div class="marca">
             <div class="logo">QuickShop</div>
@@ -17,11 +18,13 @@
 
         <div class="botoes-header">
 
+            <!-- Barra de busca: colocada dentro de <form> para semântica e compatibilidade com teclas Enter -->
             <form class="barra-pesquisa" role="search" action="#" method="get">
-                    <input type="search" name="q" placeholder="Busque por produtos, marcas..." aria-label="Buscar produtos" />
-                    <button class="btn btn-primary" aria-label="Pesquisar">🔍</button>
-                </form>
-            </div>
+                <!-- input[type=search] é recomendado para buscas; aria-label melhora acessibilidade -->
+                <input type="search" name="q" placeholder="Busque por produtos, marcas..." aria-label="Buscar produtos" />
+                <button class="btn btn-primary" aria-label="Pesquisar">🔍</button>
+            </form>
+        </div>
 
         <div style="display:flex;align-items:center;gap:8px;">
             <button id="cartButton" class="btn btn-secondary">Carrinho <span id="cartCount" style="margin-left:6px;font-weight:700;">0</span></button>
@@ -30,8 +33,10 @@
     </header>
 
 
+    <!-- Menu de categorias: lista semântica (ul/li) facilita leitura por leitores de tela e SEO -->
     <nav class="nav" role="navigation" aria-label="Categorias">
         <ul class="nav-list">
+            <!-- A classe `active` indica a categoria selecionada; o JS alterna essa classe ao clicar -->
             <li class="nav-item active">Todos</li>
             <li class="nav-item">Smartphones</li>
             <li class="nav-item">Laptops</li>
@@ -42,7 +47,9 @@
         </ul>
     </nav>
 
+    <!-- Conteúdo principal: usa grid para dividir barra lateral (filters) e área de produtos -->
     <main class="pagina">
+        <!-- Barra lateral de filtros: em desktops é fixa (sticky). Em mobile vira um drawer (via CSS/JS) -->
         <aside class="barra-lateral" id="barra-lateral">
             <h3>Filtrar por</h3>
 
@@ -102,7 +109,8 @@
             </div>
         </aside>
 
-        <section class="conteudo">
+    <!-- Área principal de conteúdo: controles + grid de produtos -->
+    <section class="conteudo">
             <div class="controles">
                 <div class="filtro-resultado">
                     <button class="btn btn-secondary toggle-barra-lateral" id="togglebarra-lateral">
@@ -129,6 +137,7 @@
                 <div class="spinner"></div>
             </div>
 
+            <!-- Grid de produtos: os cards são renderizados dinamicamente por `script.js` -->
             <div class="grid" id="productGrid">
 
             </div>
@@ -153,6 +162,28 @@
             <label><input type="checkbox" onclick="toggleSenha()"> Mostrar senha</label>
             <button class="btn btn-primary btn-login">Entrar</button>
             <button class="btn btn-primary btn-login" id="closeLogin">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal de detalhe do produto -->
+    <div class="product-modal-bg" id="productModalBg" aria-hidden="true">
+        <div class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close btn btn-secondary" id="modalClose">Fechar</button>
+            <div class="product-modal-content">
+                <img id="modalImg" src="" alt="Imagem do produto" class="product-img">
+                <div class="product-modal-info">
+                    <h3 id="modalTitle">Título do produto</h3>
+                    <p id="modalDesc">Descrição do produto.</p>
+                    <div class="preco-container">
+                        <div class="preco" id="modalPrice">R$ 0,00</div>
+                        <div class="preco-original" id="modalOriginal"></div>
+                    </div>
+                    <div style="display:flex;gap:8px;margin-top:12px;">
+                        <button class="btn btn-primary" id="buyNow">Comprar agora</button>
+                        <button class="btn btn-primary" id="modalAddCart">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

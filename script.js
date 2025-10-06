@@ -1,17 +1,17 @@
 const produtos = [
-            { id: 1, nome: 'iPhone 15 Pro Max', preco: 8999, precoOriginal: 9999, descricao: 'Smartphone premium com câmera profissional', categoria: 'smartphone', marca: 'Apple', rating: 4.8, reviews: 234 },
-            { id: 2, nome: 'MacBook Air M2', preco: 7499, precoOriginal: 8299, descricao: 'Laptop ultrabook para trabalho e criatividade', categoria: 'laptop', marca: 'Apple', rating: 4.9, reviews: 456 },
-            { id: 3, nome: 'Galaxy S24 Ultra', preco: 6999, precoOriginal: 7499, descricao: 'Flagship Android com S Pen integrada', categoria: 'smartphone', marca: 'Samsung', rating: 4.7, reviews: 189 },
-            { id: 4, nome: 'iPad Pro 12.9"', preco: 5999, precoOriginal: null, descricao: 'Tablet profissional para design e produtividade', categoria: 'tablet', marca: 'Apple', rating: 4.8, reviews: 167 },
-            { id: 5, nome: 'Dell XPS 13', preco: 4999, precoOriginal: 5499, descricao: 'Ultrabook premium para profissionais', categoria: 'laptop', marca: 'Dell', rating: 4.6, reviews: 298 },
-            { id: 6, nome: 'AirPods Pro 2', preco: 1599, precoOriginal: 1899, descricao: 'Fones wireless com cancelamento de ruído', categoria: 'acessorio', marca: 'Apple', rating: 4.7, reviews: 543 },
-            { id: 7, nome: 'Xiaomi 14 Ultra', preco: 4299, precoOriginal: 4699, descricao: 'Flagship com câmera Leica profissional', categoria: 'smartphone', marca: 'Xiaomi', rating: 4.5, reviews: 123 },
-            { id: 8, nome: 'Galaxy Tab S9', preco: 3999, precoOriginal: null, descricao: 'Tablet Android premium para trabalho', categoria: 'tablet', marca: 'Samsung', rating: 4.4, reviews: 87 },
-            { id: 9, nome: 'MacBook Pro 14"', preco: 12999, precoOriginal: null, descricao: 'Laptop profissional para criadores', categoria: 'laptop', marca: 'Apple', rating: 4.9, reviews: 321 },
-            { id: 10, nome: 'Galaxy Buds2 Pro', preco: 899, precoOriginal: 1199, descricao: 'Fones true wireless premium', categoria: 'acessorio', marca: 'Samsung', rating: 4.3, reviews: 234 },
-            { id: 11, nome: 'iPhone 15', preco: 5999, precoOriginal: 6499, descricao: 'Smartphone moderno com USB-C', categoria: 'smartphone', marca: 'Apple', rating: 4.6, reviews: 412 },
-            { id: 12, nome: 'Xiaomi Pad 6', preco: 1899, precoOriginal: 2199, descricao: 'Tablet intermediário com ótimo custo-benefício', categoria: 'tablet', marca: 'Xiaomi', rating: 4.2, reviews: 156 }
-        ];
+             { id: 1, nome: 'iPhone 15 Pro Max', preco: 8999, precoOriginal: 9999, descricao: 'Smartphone premium com câmera profissional', categoria: 'smartphone', tipo: 'Eletrônicos', marca: 'Apple', rating: 4.8, reviews: 234, path: 'img/iphone15promax.webp' },
+    { id: 2, nome: 'MacBook Air M2', preco: 7499, precoOriginal: 8299, descricao: 'Laptop ultrabook para trabalho e criatividade', categoria: 'laptop', tipo: 'Informática', marca: 'Apple', rating: 4.9, reviews: 456, path: 'img/macbookairm2.jpg' },
+    { id: 3, nome: 'Galaxy S24 Ultra', preco: 6999, precoOriginal: 7499, descricao: 'Flagship Android com S Pen integrada', categoria: 'smartphone', tipo: 'Eletrônicos', marca: 'Samsung', rating: 4.7, reviews: 189, path: 'img/galaxys24ultra.webp' },
+    { id: 4, nome: 'iPad Pro 12.9"', preco: 5999, precoOriginal: null, descricao: 'Tablet profissional para design e produtividade', categoria: 'tablet', tipo: 'Eletrônicos', marca: 'Apple', rating: 4.8, reviews: 167, path: 'img/ipadpro12.9.webp' },
+    { id: 5, nome: 'Dell XPS 13', preco: 4999, precoOriginal: 5499, descricao: 'Ultrabook premium para profissionais', categoria: 'laptop', tipo: 'Informática', marca: 'Dell', rating: 4.6, reviews: 298, path: 'img/dellxps13.jpg' },
+    { id: 6, nome: 'AirPods Pro 2', preco: 1599, precoOriginal: 1899, descricao: 'Fones wireless com cancelamento de ruído', categoria: 'acessorio', tipo: 'Áudio', marca: 'Apple', rating: 4.7, reviews: 543, path: 'img/airpods pro 12.webp' },
+    { id: 7, nome: 'Xiaomi 14 Ultra', preco: 4299, precoOriginal: 4699, descricao: 'Flagship com câmera Leica profissional', categoria: 'smartphone', tipo: 'Eletrônicos', marca: 'Xiaomi', rating: 4.5, reviews: 123, path: 'img/xiaomi14ultra.webp' },
+    { id: 8, nome: 'Galaxy Tab S9', preco: 3999, precoOriginal: null, descricao: 'Tablet Android premium para trabalho', categoria: 'tablet', tipo: 'Eletrônicos', marca: 'Samsung', rating: 4.4, reviews: 87, path: 'img/galaxys9.webp' },
+    { id: 9, nome: 'MacBook Pro 14"', preco: 12999, precoOriginal: null, descricao: 'Laptop profissional para criadores', categoria: 'laptop', tipo: 'Informática', marca: 'Apple', rating: 4.9, reviews: 321, path: 'img/macbookpro14.webp' },
+    { id: 10, nome: 'Galaxy Buds2 Pro', preco: 899, precoOriginal: 1199, descricao: 'Fones true wireless premium', categoria: 'acessorio', tipo: 'Áudio', marca: 'Samsung', rating: 4.3, reviews: 234, path: 'img/galaxybuds2pro.jpg' },
+    { id: 11, nome: 'iPhone 15', preco: 5999, precoOriginal: 6499, descricao: 'Smartphone moderno com USB-C', categoria: 'smartphone', tipo: 'Eletrônicos', marca: 'Apple', rating: 4.6, reviews: 412, path: 'img/iphone15.jpg' },
+    { id: 12, nome: 'Xiaomi Pad 6', preco: 1899, precoOriginal: 2199, descricao: 'Tablet intermediário com ótimo custo-benefício', categoria: 'tablet', tipo: 'Eletrônicos', marca: 'Xiaomi', rating: 4.2, reviews: 156, path: 'img/xiaomipad6.webp' }
+];
 
 
         const barraLateral = document.getElementById('barra-lateral');
@@ -46,30 +46,30 @@ const produtos = [
 
 
         function renderProduct(produto) {
-            const discount = calculateDiscount(produto.precoOriginal, produto.preco);
-            
-            return `
-                <article class="card" data-id="${produto.id}" data-category="${produto.categoria}" data-brand="${produto.marca}" data-price="${produto.preco}">
-                    <div class="thumb">
-                        📱 Imagem do produto
-                    </div>
-                    <div class="card-nome">${produto.nome}</div>
-                    <div class="avaliacao">
-                        <span class="estrelas">${generateStars(produto.rating)}</span>
-                        <span class="avaliacoes-count">(${produto.reviews})</span>
-                    </div>
-                    <div class="card-descricao">${produto.descricao}</div>
-                    <div class="preco-container">
-                        <span class="preco">${formatPrice(produto.preco)}</span>
-                        ${produto.precoOriginal ? `
-                            <span class="preco-original">${formatPrice(produto.precoOriginal)}</span>
-                            <span class="desconto">-${discount}%</span>
-                        ` : ''}
-                    </div>
-                    <button class="btn btn-primary btn-comprar">🛒 Adicionar ao Carrinho</button>
-                </article>
-            `;
-        }
+    const discount = calculateDiscount(produto.precoOriginal, produto.preco);
+
+    return `
+        <article class="card" data-category="${produto.categoria}" data-brand="${produto.marca}" data-price="${produto.preco}">
+            <div class="thumb">
+                <img src="${produto.path}" alt="${produto.nome}" class="product-img">
+            </div>
+            <div class="card-nome">${produto.nome}</div>
+            <div class="avaliacao">
+                <span class="estrelas">${generateStars(produto.rating)}</span>
+                <span class="avaliacoes-count">(${produto.reviews})</span>
+            </div>
+            <div class="card-descricao">${produto.descricao}</div>
+            <div class="preco-container">
+                <span class="preco">${formatPrice(produto.preco)}</span>
+                ${produto.precoOriginal ? `
+                    <span class="preco-original">${formatPrice(produto.precoOriginal)}</span>
+                    <span class="desconto">-${discount}%</span>
+                ` : ''}
+            </div>
+            <button class="btn btn-primary btn-comprar">🛒 Adicionar ao Carrinho</button>
+        </article>
+    `;
+}
 
         function renderProducts(products = produtos) {
             loading.style.display = 'flex';

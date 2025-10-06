@@ -1,3 +1,6 @@
+// Lista de produtos (modelo de dados):
+// Cada produto tem: id, nome, preco, precoOriginal, descricao,
+// categoria, tipo, marca, rating, reviews e path para a imagem.
 const produtos = [
     { id: 1, nome: 'iPhone 15 Pro Max', preco: 8999, precoOriginal: 9999, descricao: 'Smartphone premium com câmera profissional', categoria: 'smartphone', tipo: 'Eletrônicos', marca: 'Apple', rating: 4.8, reviews: 234, path: 'img/iphone15promax.webp' },
     { id: 2, nome: 'MacBook Air M2', preco: 7499, precoOriginal: 8299, descricao: 'Laptop ultrabook para trabalho e criatividade', categoria: 'laptop', tipo: 'Informática', marca: 'Apple', rating: 4.9, reviews: 456, path: 'img/macbookairm2.jpg' },
@@ -14,6 +17,7 @@ const produtos = [
 ];
 
 
+// Elementos chave do DOM usados pela aplicação
 const barraLateral = document.getElementById('barra-lateral');
 const toggle = document.getElementById('togglebarra-lateral');
 const overlay = document.getElementById('overlay');
@@ -78,10 +82,84 @@ function renderProducts(products = produtos) {
         productGrid.innerHTML = products.map(renderProduct).join('');
         loading.style.display = 'none';
     }, 300);
+
+        // Lógica do modal: abrir, preencher e fechar
+    const modalBg = document.querySelector('.product-modal-bg');
+    const modal = document.querySelector('.product-modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalOriginal = document.getElementById('modalOriginal');
+    const modalAddCart = document.getElementById('modalAddCart');
+    const modalBuyNow = document.getElementById('buyNow');
+    const modalClose = document.getElementById('modalClose');
+
+    function openProductModal(productId) {
+        const p = produtos.find(x => x.id === productId);
+        if (!p) return;
+    // Usa os campos do produto conforme definidos no dataset
+        modalImg.src = p.path || '';
+        modalImg.alt = p.nome;
+        modalTitle.textContent = p.nome;
+        modalDesc.textContent = p.descricao || '';
+    // Formata preços para exibição. Mostra o preço original apenas se existir.
+        modalPrice.textContent = formatPrice(p.preco);
+        modalOriginal.textContent = p.precoOriginal ? formatPrice(p.precoOriginal) : '';
+        modalAddCart.dataset.productId = p.id;
+        modalBuyNow.dataset.productId = p.id;
+        modalBg.classList.add('active');
+    // Move o foco para dentro do modal por acessibilidade
+        modalClose.focus();
+    }
+
+    function closeProductModal() {
+        modalBg.classList.remove('active');
+    }
+
+    // Manipuladores de fechamento do modal
+        modalClose.addEventListener('click', closeProductModal);
+    modalBg.addEventListener('click', (e) => {
+        if (e.target === modalBg) closeProductModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalBg.classList.contains('active')) {
+            closeProductModal();
+        }
+    });
+
+    // Atribuir ações aos botões do modal
+        modalAddCart.addEventListener('click', (e) => {
+        const id = Number(e.currentTarget.dataset.productId);
+        addToCart(id);
+        closeProductModal();
+    });
+
+    modalBuyNow.addEventListener('click', (e) => {
+        const id = Number(e.currentTarget.dataset.productId);
+        addToCart(id);
+    // Simula fluxo de checkout imediato: para demonstração, exibe um alerta
+        closeProductModal();
+        setTimeout(() => {
+            alert('Produto adicionado ao carrinho. Prosseguir para checkout.');
+        }, 50);
+    });
+
+    // Abrir modal ao clicar no cartão do produto (exceto ao clicar no botão de adicionar)
+        const productGrid = document.getElementById('productGrid');
+    productGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        if (!card) return;
+        // Se foi clicado um botão dentro do card, ignorar aqui (os botões têm seus próprios manipuladores)
+            if (e.target.closest('button')) return;
+        const id = Number(card.dataset.id);
+        if (id) openProductModal(id);
+    });
 }
 
 
 function getActiveFilters() {
+    // Recolhe os valores dos filtros atuais (busca, categorias, marcas, rating e preço)
     const searchQuery = (document.querySelector('input[type="search"]').value || '').toLowerCase();
 
     const categoryChecks = Array.from(document.querySelectorAll('.barra-lateral input[type="checkbox"][value]'))
@@ -232,7 +310,7 @@ searchInput.addEventListener('input', (e) => {
 });
 
 
-// Nav items: agora são <li> dentro de .nav-list (lista semântica). Adaptamos o seletor.
+// Nav items: <li> dentro de .nav-list (lista semântica).
 document.querySelectorAll('.nav-list .nav-item').forEach(item => {
     item.addEventListener('click', (e) => {
         document.querySelectorAll('.nav-list .nav-item').forEach(i => i.classList.remove('active'));
